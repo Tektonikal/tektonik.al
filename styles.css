@@ -1,11 +1,8 @@
-body { background-color: #000000; 
+body {
+  background-color: black; 
   font-family: Consolas, monaco, monospace;
 }
 p {
     text-align: center;
     color: white;
   }
-div{
-  display: flex;
-  justify-content: center;
-}
