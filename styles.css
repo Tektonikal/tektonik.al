@@ -1,13 +1,11 @@
-body { background-color: #222222; 
+body { background-color: #000000; 
   font-family: Consolas, monaco, monospace;
 }
 p {
     text-align: center;
     color: white;
   }
-  .center {
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    width: 50%;
-  }
+div{
+  display: flex;
+  justify-content: center;
+}
