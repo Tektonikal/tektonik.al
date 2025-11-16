@@ -2,7 +2,24 @@ body {
   background-color: black; 
   font-family: Consolas, monaco, monospace;
 }
+div{
+text-align: center;
+}
+img{
+  position: fixed; left: 50vw; top: 50vh; transform: translate(-50%, -50%); max-width: 50vw; max-height: 50vh; animation-name: fade; animation-duration: 10s; animation-iteration-count: infinite; animation-timing-function: ease-in-out;
+}
 p {
-    text-align: center;
-    color: white;
+margin-top: 60vh; color: white;
   }
+
+  @keyframes fade {
+    0% {
+        filter: drop-shadow(0 0 0px rgba(255, 255, 255, 0));
+    }
+    50% {
+        filter: drop-shadow(0 0 15px rgba(255, 255, 255, 1));
+    }
+    100% {
+        filter: drop-shadow(0 0 0px rgba(255, 255, 255, 0));
+    }
+}
