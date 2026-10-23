@@ -1,25 +1,429 @@
-body {
-  background-color: black; 
-  font-family: Consolas, monaco, monospace;
+:root {
+    --glow: 255, 255, 255;
 }
-div{
-text-align: center;
-}
-img{
-  position: fixed; left: 50vw; top: 50vh; transform: translate(-50%, -50%); max-width: 50vw; max-height: 50vh; animation-name: fade; animation-duration: 10s; animation-iteration-count: infinite; animation-timing-function: ease-in-out;
-}
-p {
-margin-top: 60vh; color: white;
-  }
 
-  @keyframes fade {
-    0% {
-        filter: drop-shadow(0 0 0px rgba(255, 255, 255, 0));
+@font-face {
+    font-family: "BD Plakatbau";
+    src: url("fonts/bdplakatt.ttf") format("truetype");
+    font-display: block;
+}
+
+/* Monocraft by Idrees Hassan, SIL OFL 1.1 (see fonts/Monocraft-LICENSE.txt) */
+@font-face {
+    font-family: "Monocraft";
+    src: url("fonts/Monocraft.ttf") format("truetype");
+    font-display: swap;
+}
+
+html {
+    scroll-behavior: smooth;
+    scrollbar-width: none;
+}
+html::-webkit-scrollbar {
+    display: none;
+}
+
+html, body {
+    background-color: black;
+    color: white;
+    font-family: Consolas, monaco, monospace;
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+}
+
+.filters {
+    position: absolute;
+    width: 0;
+    height: 0;
+}
+
+.center-container {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    width: 100%;
+    overflow-x: clip;
+}
+
+.title {
+    position: relative;
+    display: inline-block;
+    font-family: "BD Plakatbau", Impact, sans-serif;
+    font-size: min(16.5vw, 254px);
+    line-height: 1;
+    text-transform: uppercase;
+    white-space: nowrap;
+    -webkit-user-select: none;
+    user-select: none;
+    animation: flicker-a 6.1s linear infinite;
+}
+
+.title-glows {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    animation: flicker-b 4.3s linear infinite;
+}
+
+.title-glows span {
+    position: absolute;
+    inset: -0.4em 0 -0.18em;
+}
+
+.title-text {
+    position: relative;
+    margin: -0.4em 0 -0.18em;
+    font: inherit;
+    filter:
+        drop-shadow(0 0 1px rgba(var(--glow), 0.6))
+        drop-shadow(0 0 4px rgba(var(--glow), 0.3));
+}
+
+.title-haze {
+    filter: blur(120px);
+    animation:
+        haze 21.1s ease-in-out infinite -8s,
+        drift 29s ease-in-out infinite -11s;
+}
+
+.title-bloom {
+    filter: blur(55px);
+    animation:
+        bloom 15.7s ease-in-out infinite -3s,
+        drift 23s ease-in-out infinite reverse;
+}
+
+.title-glow {
+    filter: url(#static-glow);
+    animation:
+        pulse 11.3s ease-in-out infinite,
+        drift 17s ease-in-out infinite -6s;
+}
+
+.splash {
+    position: absolute;
+    left: 85%;
+    bottom: 0;
+    margin: 0;
+    color: #ffff55;
+    font-family: "Monocraft", Consolas, monaco, monospace;
+    text-transform: none;
+    line-height: normal;
+    font-size: max(7px, min(max(11px, 2.6vw), 32px, calc(min(65vw, 1000px) * 0.9 / var(--chars, 16))));
+    white-space: nowrap;
+    text-shadow:
+        2px 2px 0 #3f3f15,
+        0 0 8px rgba(255, 255, 85, 0.6);
+    rotate: -15deg;
+    translate: -50% 20%;
+    animation: splash 0.5s ease-in-out infinite alternate;
+    pointer-events: none;
+}
+
+.scroll-hint {
+    position: absolute;
+    bottom: 4px;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 8px 12px;
+    animation: flicker-a 7.7s linear infinite -2.4s;
+}
+.chevron-glows {
+    animation: flicker-b 5.3s linear infinite -1.1s;
+}
+.scroll-hint svg {
+    display: block;
+    overflow: visible;
+    transition: translate 0.3s ease-out;
+}
+.scroll-hint:hover svg,
+.scroll-hint:focus-visible svg {
+    translate: 0 5px;
+}
+.chevron {
+    fill: none;
+    stroke: white;
+    stroke-width: 3;
+    stroke-linecap: square;
+}
+.chevron-sharp {
+    filter: drop-shadow(0 0 1px rgba(var(--glow), 0.6));
+}
+.chevron-glow {
+    filter: url(#static-glow-small);
+    transform-box: fill-box;
+    transform-origin: center;
+    animation: pulse 9.7s ease-in-out infinite -4s;
+}
+
+.content {
+    box-sizing: border-box;
+    min-height: 100vh;
+    min-height: 100svh;
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 72px 16px;
+    overflow: hidden;
+    line-height: 1.6;
+    text-shadow: 0 0 6px rgba(var(--glow), 0.4);
+}
+
+.content h2 {
+    margin: 0 0 12px;
+    font-family: "BD Plakatbau", Impact, sans-serif;
+    font-size: 2rem;
+    font-weight: normal;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    text-shadow:
+        0 0 4px rgba(var(--glow), 0.6),
+        0 0 16px rgba(var(--glow), 0.3);
+}
+
+.content p,
+.content ul {
+    margin: 0;
+}
+
+.about {
+    max-width: 70ch;
+    margin: 0 auto 64px;
+    text-align: center;
+}
+
+.columns {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 48px;
+}
+
+.column {
+    padding-top: 16px;
+    border-top: 1px solid rgba(var(--glow), 0.25);
+}
+
+.column ul {
+    display: grid;
+    gap: 10px;
+    padding-left: 1.2em;
+}
+.column ul li {
+    padding-block: 0.05em;
+}
+
+.content a {
+    color: inherit;
+    text-decoration: none;
+    border-bottom: 1px solid rgba(var(--glow), 0.35);
+    transition: border-color 0.2s, text-shadow 0.2s;
+}
+.content a:hover,
+.content a:focus-visible {
+    border-color: rgba(var(--glow), 0.9);
+    text-shadow: 0 0 8px rgba(var(--glow), 0.9);
+}
+
+.column .work-list {
+    display: grid;
+    grid-template-columns: max-content max-content 1fr;
+    align-items: center;
+    gap: 10px 0.6em;
+    list-style: none;
+    padding-left: 0;
+}
+.work-list li {
+    display: contents;
+}
+.work-list a {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4em;
+    justify-self: start;
+    border-bottom: none;
+}
+.work-list a span {
+    border-bottom: 1px solid rgba(var(--glow), 0.35);
+    transition: border-color 0.2s;
+}
+.work-list a:hover span,
+.work-list a:focus-visible span {
+    border-color: rgba(var(--glow), 0.9);
+}
+
+.work-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.9em;
+    justify-self: start;
+}
+
+.downloads {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.25em;
+    opacity: 0.75;
+    cursor: default;
+}
+.downloads[hidden] {
+    display: none;
+}
+.downloads svg {
+    width: 0.9em;
+    height: 0.9em;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1.6;
+    stroke-linecap: square;
+    filter: drop-shadow(0 0 2px rgba(var(--glow), 0.6));
+}
+
+.inline-icon {
+    flex: none;
+    width: 2.6em;
+    height: 1.7em;
+    object-fit: contain;
+}
+.inline-icon-wide {
+    object-fit: cover;
+}
+
+.contact {
+    max-width: 60ch;
+    margin: 64px auto 0;
+    padding-top: 16px;
+    border-top: 1px solid rgba(var(--glow), 0.25);
+    text-align: center;
+}
+
+.footer-art {
+    display: block;
+    width: min(160px, 40vw);
+    height: auto;
+    margin: 48px auto 64px;
+    filter: drop-shadow(0 0 4px rgba(var(--glow), 0.4));
+    -webkit-user-drag: none;
+    user-select: none;
+}
+
+.content .note {
+    margin-top: 24px;
+    font-size: 0.85em;
+    text-align: center;
+    opacity: 0.7;
+}
+
+@media (max-width: 640px) {
+    .splash {
+        left: 72%;
     }
-    50% {
-        filter: drop-shadow(0 0 15px rgba(255, 255, 255, 1));
+    .columns {
+        grid-template-columns: 1fr;
+        gap: 40px;
     }
-    100% {
-        filter: drop-shadow(0 0 0px rgba(255, 255, 255, 0));
+}
+
+@keyframes pulse {
+    0%, 100% { opacity: 0.4;  scale: 1; }
+    14%      { opacity: 0.6;  scale: 1.015; }
+    26%      { opacity: 0.48; scale: 1.005; }
+    47%      { opacity: 0.8;  scale: 1.035; }
+    61%      { opacity: 0.55; scale: 1.01; }
+    79%      { opacity: 0.7;  scale: 1.025; }
+    88%      { opacity: 0.5;  scale: 1.008; }
+}
+
+@keyframes drift {
+    0%, 100% { translate: 0 0; }
+    21%      { translate: 3px -1px; }
+    38%      { translate: -2px 2px; }
+    57%      { translate: 1px 1px; }
+    74%      { translate: -3px -2px; }
+    90%      { translate: 2px 0; }
+}
+
+@keyframes flicker-a {
+    0%, 100% { opacity: 1; }
+    8%       { opacity: 1; }
+    8.4%     { opacity: 0.55; }
+    9%       { opacity: 1; }
+    23%      { opacity: 1; }
+    23.3%    { opacity: 0.8; }
+    23.6%    { opacity: 1; }
+    41%      { opacity: 1; }
+    41.4%    { opacity: 0.35; }
+    41.9%    { opacity: 0.9; }
+    42.3%    { opacity: 0.5; }
+    42.6%    { opacity: 1; }
+    43.1%    { opacity: 0.7; }
+    43.5%    { opacity: 1; }
+    64%      { opacity: 1; }
+    64.5%    { opacity: 0.65; }
+    65%      { opacity: 1; }
+    81%      { opacity: 1; }
+    81.3%    { opacity: 0.45; }
+    81.8%    { opacity: 1; }
+}
+
+@keyframes flicker-b {
+    0%, 100% { opacity: 1; }
+    15%      { opacity: 1; }
+    15.5%    { opacity: 0.4; }
+    16.2%    { opacity: 1; }
+    33%      { opacity: 1; }
+    33.4%    { opacity: 0.7; }
+    33.8%    { opacity: 0.95; }
+    34.2%    { opacity: 0.5; }
+    34.7%    { opacity: 1; }
+    57%      { opacity: 1; }
+    57.6%    { opacity: 0.6; }
+    58.1%    { opacity: 1; }
+    76%      { opacity: 1; }
+    76.3%    { opacity: 0.3; }
+    76.9%    { opacity: 0.85; }
+    77.3%    { opacity: 1; }
+}
+
+@keyframes splash {
+    from { scale: 1; }
+    to   { scale: 1.08; }
+}
+
+@keyframes bloom {
+    0%, 100% { opacity: 0.18; scale: 1; }
+    19%      { opacity: 0.3;  scale: 1.05; }
+    33%      { opacity: 0.22; scale: 1.02; }
+    58%      { opacity: 0.38; scale: 1.08; }
+    76%      { opacity: 0.25; scale: 1.03; }
+}
+
+@keyframes haze {
+    0%, 100% { opacity: 0.12; scale: 1.05; }
+    27%      { opacity: 0.2;  scale: 1.12; }
+    45%      { opacity: 0.14; scale: 1.08; }
+    71%      { opacity: 0.24; scale: 1.16; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    html {
+        scroll-behavior: auto;
+    }
+    .title, .title-glows, .title-glow, .title-bloom, .title-haze,
+    .scroll-hint, .chevron-glows, .chevron-glow, .splash {
+        animation: none;
+    }
+    .scroll-hint svg {
+        transition: none;
+    }
+    .title-haze {
+        opacity: 0.16;
+    }
+    .title-glow {
+        opacity: 0.6;
+    }
+    .title-bloom {
+        opacity: 0.28;
     }
 }

@@ -1,15 +1,243 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-  <link rel="stylesheet" href="styles.css">
-  <head>
-    <title>tektonik.al</title>
-    <link rel="icon" href="img/favicon.png">
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-</head>
-<body>
-        <div>
-           <img src="img/title.png">
-           <p>soon...<br>@Tektonikal.62 on Signal</p>
+    <head>
+        <title>tektonik.al</title>
+        <link rel="icon" href="img/favicon.png" />
+        <link rel="stylesheet" href="styles.css" />
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+    </head>
+    <body>
+        <svg class="filters" aria-hidden="true">
+            <filter id="static-glow" x="-30%" y="-200%" width="160%" height="500%">
+                <feGaussianBlur in="SourceGraphic" stdDeviation="18" result="blur" />
+                <feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="2" seed="0" result="noise">
+                    <animate attributeName="seed" dur="1.61s" repeatCount="indefinite" calcMode="discrete"
+                        values="0;7;3;19;11;5;23;14;2;17;9;21;6;13;1;18;10;4;22;15;8;20;12" />
+                </feTurbulence>
+                <feColorMatrix in="noise" type="matrix" result="grain"
+                    values="0 0 0 0 1
+                            0 0 0 0 1
+                            0 0 0 0 1
+                            1.2 0 0 0 -0.1" />
+                <feComposite in="blur" in2="grain" operator="arithmetic" k1="0.7" k2="0.75">
+                    <animate attributeName="k1" dur="11.3s" repeatCount="indefinite" calcMode="discrete"
+                        values="0.7;0;0.7;0;0.7;0;0.7"
+                        keyTimes="0;0.37;0.385;0.79;0.8;0.805;0.82" />
+                </feComposite>
+            </filter>
+            <filter id="static-glow-small" x="-100%" y="-200%" width="300%" height="500%">
+                <feGaussianBlur in="SourceGraphic" stdDeviation="5" result="blur" />
+                <feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="2" seed="0" result="noise">
+                    <animate attributeName="seed" dur="1.37s" repeatCount="indefinite" calcMode="discrete"
+                        values="31;44;36;50;39;47;33;42;52;37;45;34;49;40;35;48;43;38;51" />
+                </feTurbulence>
+                <feColorMatrix in="noise" type="matrix" result="grain"
+                    values="0 0 0 0 1
+                            0 0 0 0 1
+                            0 0 0 0 1
+                            1.2 0 0 0 -0.1" />
+                <feComposite in="blur" in2="grain" operator="arithmetic" k1="0.9" k2="1.1">
+                    <animate attributeName="k1" dur="9.1s" repeatCount="indefinite" calcMode="discrete"
+                        values="0.9;0;0.9;0;0.9"
+                        keyTimes="0;0.24;0.26;0.67;0.69" />
+                </feComposite>
+            </filter>
+        </svg>
+
+        <div class="center-container">
+            <div class="title">
+                <div class="title-glows" aria-hidden="true">
+                    <span class="title-haze">tektonikal</span>
+                    <span class="title-bloom">tektonikal</span>
+                    <span class="title-glow">tektonikal</span>
+                </div>
+                <h1 class="title-text">tektonikal</h1>
+                <p class="splash" aria-hidden="true">Oh yeah.</p>
+            </div>
+            <a class="scroll-hint" href="#content" aria-label="Scroll down">
+                <svg width="36" height="18" viewBox="0 0 36 18" aria-hidden="true">
+                    <g class="chevron-glows">
+                        <polyline class="chevron chevron-glow" points="7,2 18,16 29,2" />
+                    </g>
+                    <polyline class="chevron chevron-sharp" points="7,2 18,16 29,2" />
+                </svg>
+            </a>
+        </div>
+        <main id="content" class="content">
+            <section class="about">
+                <h2>about</h2>
+                <p>They call me Teal. Failed bassist, horrible programmer.<br>Perfectionist trying to give a little magic back to the world.<br>Real music freak, don't even joke lad.</p>
+            </section>
+
+            <div class="columns">
+                <section class="column">
+                    <h2>work</h2>
+                    <ul class="work-list">
+                        <li>
+                            <span class="role">Developer</span><span class="at">@</span>
+                            <a href="https://polyfrost.org/"><img class="inline-icon" src="img/icons/polyfrost.svg" alt="" /><span>Polyfrost</span></a>
+                        </li>
+                        <li>
+                            <span class="role">Developer</span><span class="at">@</span>
+                            <a href="https://blockey.net/"><img class="inline-icon inline-icon-wide" src="img/icons/bsn.png" alt="" /><span>BSN</span></a>
+                        </li>
+                        <li>
+                            <span class="role">Developer</span><span class="at">@</span>
+                            <a href="https://www.youtube.com/knarfy"><img class="inline-icon" src="img/icons/knarfy.png" alt="" /><span>Knarfy Production</span></a>
+                        </li>
+                        <li>
+                            <span class="role">Projects</span><span class="at">@</span>
+                            <span class="work-link">
+                                <a href="https://modrinth.com/user/Tektonikal"><img class="inline-icon" src="img/icons/modrinth.png" alt="" /><span>Modrinth</span></a>
+                                <span class="downloads" hidden>
+                                    <svg viewBox="0 0 12 12" role="img" aria-label="downloads"><path d="M6 1v9M2 6l4 4 4-4" /></svg>
+                                    <span class="downloads-count"></span>
+                                </span>
+                            </span>
+                        </li>
+                    </ul>
+                    <p class="note">
+                        I promise I do more than just MC...
+                        <br>
+                        I'm just really good at this thing.
+                    </p>
+                </section>
+                <section class="column">
+                    <h2>details</h2>
+                    <ul>
+                        <li>From Ukraine, reformed into a Florida man.</li>
+                        <li>I love all cats.</li>
+                        <li>Student of acceptable quality...</li>
+                        <li>Always rocking my propeller hat.</li>
+                    </ul>
+                    <p class="note">
+                        This is my website, not a biography.
+                        <br>
+                        Get to know me in person, stalker.
+                    </p>
+                </section>
+            </div>
+
+            <section class="contact">
+                <h2>contact</h2>
+                <p>No need. We will cross paths when the time is right.</p>
+            </section>
+        </main>
+
+        <img class="footer-art" src="img/footer.png" alt="" />
+
+        <script>
+            if (matchMedia("(prefers-reduced-motion: reduce)").matches) document.querySelector(".filters").pauseAnimations();
+
+            const splashes = [
+                "ough...",
+                "yeahhh",
+                "I need a saga!",
+                "JRJRJRJR!",
+                "Jesus never had it with a freak bitch!",
+                "Shaky Knees '26!",
+                "Cleverly disguised",
+                "Sick, sick, sick!",
+                "Thread it, to forget it",
+                "There's another light",
+                "Living in the era vulgaris",
+                "Metal heavy, soft at the core!",
+                "KRDL, Curdle one-oh-nine! We spoil music for everyone!",
+                "If you're not knowin' I'm here to let you know!",
+                "Give you my stamp of approval, you know what I'm sayin?",
+                "I want to take what's left!",
+                "What to do, what to say when you're crossin' my line?",
+                "Another signal from the origin!",
+                "Technicolor dreaming, my love",
+                "Waiting for love to come 'round!",
+                "An apocalyptic novelty revolution!",
+                "I need colour!",
+                "You've been living in another dimension!",
+                "If we're the only time it occurs?",
+                "I'm only choosing love!",
+                "Float outside in the fields of gold",
+                "Now I know I'm dreaming, took me a while...",
+                "This life I've been assigned",
+                "The magnet on my heart",
+                "Your eyes were like galaxies",
+                "To exist in a moment",
+                "Head scattered a mess, in one million pieces",
+                "Yet the show goes on without me!",
+                "The wizard's coming!",
+                "At least I thought so!",
+                "Feel like you can float",
+                "Going out in fashionable style",
+                "Working all day for little pay, to be a little man!",
+                "My god, I know I'm in the wrong industry!",
+                "I'm in need of ideologies, a philosophy on life!",
+                "The candle lit at both ends",
+                "I don't think you're real, sometimes",
+                "Holy water, no use trying",
+                "Invade, invade, invade, invade!",
+                "They'll notice us, when everything returns to dust",
+                "Only good times will kill me",
+                "I'd give it all up in a heartbeat",
+                "Evil livin'!",
+                "Can you take another day of work?",
+                "You are saying all the words I'm dreamin'",
+                "I'll get it right sometime",
+                "Life is too short, but I will live for you!",
+                "Waste my breath, no lessons learned!",
+                "Drums please, Fab",
+                "White boy got it!",
+                "I've got no more thinking to do",
+                "You can change!",
+                "Doctor! Heal yourself!",
+                "Nobody knows where they're going except me",
+                "Get out, get under!",
+                "What I saw could make a dead man die!",
+                "Be my warrior!",
+                "I see myself in you!",
+                "In the jaws of a monster, but my hand don't shake!",
+                "Won't you break my chain?",
+                "Smoke fills your life!",
+                "Is it too late to go back?",
+                "You've got a monster in your parasol!",
+                "Gotta get out, and get right!",
+                "Now when you gonna learn?",
+                "We're too young to die!",
+                "I've got a good time if you wanna!",
+                "The libertine ponders...",
+                "Fallen angel",
+                "There's no hotel, there's nothing here!",
+                "Call it easy, call it quits!",
+                "I'll outlast you!",
+                "Let's leave it all in the rearview",
+                "Choose your vice, and roll the dice",
+                "You better start a-walking",
+                "Under the bridge downtown, I gave my life away!",
+                "I must believe!",
+                "Use the force!",
+                "Time won't wait for you!",
+                "Kung Fu Kenny!",
+                "Power of love!",
+            ];
+            const splash = document.querySelector(".splash");
+            splash.textContent = splashes[Math.floor(Math.random() * splashes.length)];
+            splash.style.setProperty("--chars", splash.textContent.length);
+
+            const getJson = (url) => fetch(url).then((r) => (r.ok ? r.json() : Promise.reject(r.status)));
+            const modrinth = getJson("https://api.modrinth.com/v2/user/Tektonikal/projects")
+                .then((projects) => projects.reduce((sum, p) => sum + p.downloads, 0));
+            const curseforge = getJson("https://api.cfwidget.com/author/search/Tektonikal")
+                .then((author) => Promise.allSettled(author.projects.map((p) => getJson(`https://api.cfwidget.com/${p.id}`))))
+                .then((results) => results.reduce((sum, r) => sum + (r.status === "fulfilled" ? r.value.downloads.total : 0), 0));
+            Promise.allSettled([modrinth, curseforge]).then((results) => {
+                const ok = results.filter((r) => r.status === "fulfilled");
+                if (!ok.length) return;
+                const total = ok.reduce((sum, r) => sum + r.value, 0);
+                const el = document.querySelector(".downloads");
+                el.querySelector(".downloads-count").textContent =
+                    new Intl.NumberFormat("en", { notation: "compact", maximumFractionDigits: 1 }).format(total).toLowerCase();
+                el.title = `${total.toLocaleString("en")} downloads on Modrinth + CurseForge`;
+                el.hidden = false;
+            });
+        </script>
     </body>
 </html>
